@@ -2,7 +2,7 @@ export interface IPrice{
   postcode: string;
   transferDate: Date;
   price: number;
-  PAON: string;
-  Street: string;
+  paon: string;
+  street: string;
   locality: string;
 }
