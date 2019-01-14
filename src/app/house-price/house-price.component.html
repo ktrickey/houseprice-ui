@@ -1,0 +1,52 @@
+<div class="alert alert-warning" *ngIf='!prices || prices.length === 0'>
+  No matching prices
+
+</div>
+<table class="table table-striped" *ngIf='prices && prices.length'>
+  <thead>
+    <tr>
+      <th>
+        Postcode
+      </th>
+      <th>
+        Transfer Date
+      </th>
+      <th>
+        Price
+      </th>
+      <th>
+        PAON
+      </th>
+      <th>
+        Street
+      </th>
+      <th>
+        Locality
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr *ngFor='let price of prices'>
+      <td>
+        {{ price.postcode}}
+      </td>
+      <td>
+        {{price.transferDate}}}
+      </td>
+      <td>
+        {{price.price}}}
+      </td>
+      <td>
+        {{price.paon}}
+      </td>
+      <td>
+        {{price.street}}
+      </td>
+      <td>
+        {{price.locality}}
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
