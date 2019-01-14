@@ -1,52 +1,68 @@
-<div class="alert alert-warning" *ngIf='!prices || prices.length === 0'>
-  No matching prices
+<div class="card">
+    <div class="card-header">Results within {{radius}}km of {{postcode}}</div>
+    <div class="card-body">
+        <div  *ngIf='!prices || prices.length === 0'>
+            No matching sales
+          </div>
 
-</div>
-<table class="table table-striped" *ngIf='prices && prices.length'>
-  <thead>
-    <tr>
-      <th>
-        Postcode
-      </th>
-      <th>
-        Transfer Date
-      </th>
-      <th>
-        Price
-      </th>
-      <th>
-        PAON
-      </th>
-      <th>
-        Street
-      </th>
-      <th>
-        Locality
-      </th>
-    </tr>
-  </thead>
-  <tbody>
+          <div *ngIf='prices && prices.length'>
 
-    <tr *ngFor='let price of prices'>
-      <td>
-        {{ price.postcode}}
-      </td>
-      <td>
-        {{price.transferDate}}}
-      </td>
-      <td>
-        {{price.price}}}
-      </td>
-      <td>
-        {{price.paon}}
-      </td>
-      <td>
-        {{price.street}}
-      </td>
-      <td>
-        {{price.locality}}
-      </td>
-    </tr>
-    }
-  </tbody>
-</table>
+          <table class="table table-striped" >
+            <thead>
+              <tr>
+                <th>
+                  Postcode
+                </th>
+                <th>
+                  Transfer Date
+                </th>
+                <th>
+                  Price
+                </th>
+                <th>
+                  PAON
+                </th>
+                <th>
+                  Street
+                </th>
+                <th>
+                  Locality
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr *ngFor='let price of prices'>
+                <td>
+                  {{ price.postcode}}
+                </td>
+                <td>
+                  {{price.transferDate | date:'shortDate'}}
+                </td>
+                <td>
+                  {{price.price | currency:'GBP':'symbol':'1.0-0'}}
+                </td>
+                <td>
+                  {{price.paon}}
+                </td>
+                <td>
+                  {{price.street}}
+                </td>
+                <td>
+                  {{price.locality}}
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+          </div>
+
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-secondary" (click)="onBack()">
+          <i class="fa fa-angle-left" ></i>
+          Back
+        </button>
+    </div>
+  </div>
+

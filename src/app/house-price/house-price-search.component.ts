@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { AppRoutingModule } from '../app-routing.module';
 
 @Component({
   selector: 'app-house-price-search',
@@ -9,13 +10,14 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
 })
 export class HousePriceSearchComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor( private router: Router) { }
+  postcode = '';
+  radius = 10;
 
   ngOnInit() {
+
   }
 
-  postcode: string;
-  radius: number = 10
   onSearch(): void {
     this.router.navigate(['/prices', this.postcode, 'radius', this.radius]);
   }
