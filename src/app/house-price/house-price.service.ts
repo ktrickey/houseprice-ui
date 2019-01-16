@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { IPrice } from './price';
+import { IPriceLookup } from './price';
 import { catchError, tap, map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HousePriceService {
 
-  private transactionsUrl = 'api/transactions/transactions.json';
+  private transactionsUrl = environment.api + 'transaction/';
   constructor(private http: HttpClient) { }
 
-  getPrices(): Observable<IPrice[]> {
-    return this.http.get<IPrice[]>(this.transactionsUrl).pipe(
+  getPrices(): Observable<IPriceLookup> {
+    return this.http.get<IPriceLookup>(this.transactionsUrl + 'cb233ny/10').pipe(
       tap(data => console.log('All: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );

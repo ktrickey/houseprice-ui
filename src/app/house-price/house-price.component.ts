@@ -25,7 +25,7 @@ export class HousePriceComponent implements OnInit {
 
   ngOnInit() {
     this.priceService.getPrices().subscribe(
-      prices => this.prices = prices,
+      lookup => this.prices = lookup.results,
       error => this.errorMessage = <any>error
     );
   }
