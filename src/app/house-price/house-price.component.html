@@ -1,50 +1,53 @@
 <div class="card">
-    <div class="card-header">Results within {{radius}}km of {{postcode}}</div>
-    <div class="card-body">
-      <div  *ngIf='!prices || prices.length === 0'>
-          No matching sales
-      </div>
 
-      <div *ngIf='prices && prices.length'>
-        <table class="table table-striped" >
-          <thead>
-            <tr>
-              <th>Postcode</th>
-              <th>Transfer Date</th>
-              <th>Price</th>
-              <th>PAON</th>
-              <th>Street</th>
-              <th>Locality</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor='let price of prices'>
-              <td>
-                {{ price.postcode }}
-              </td>
-              <td>
-                {{ price.transferDate | date:'shortDate' }}
-              </td>
-              <td>
-                {{ price.price | currency:'GBP':'symbol':'1.0-0' }}
-              </td>
-              <td>
-                {{ price.paon }}
-              </td>
-              <td>
-                {{ price.street }}
-              </td>
-              <td>
-                {{ price.locality }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="card-body">
+      <div class="alert alert-info" role="alert">
+        Results within {{radius}}km of {{postcode}}
       </div>
+      <table class="table table-striped" *ngIf="hasPrices ; else noMatches">
+        <thead>
+          <tr>
+            <th style="width: 8%">Number/Name</th>
+            <th style="width: 25%">Street</th>
+            <th style="width: 10%">Transfer Date</th>
+            <th class="text-right" style="width: 8%">Price</th>
+            <th style="width: 10%">Postcode</th>
+            <th >Locality</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let price of prices">
+            <td class="text-right">
+              {{ price.paon }}
+            </td>
+            <td>
+              {{ price.street }}
+            </td>
+            <td>
+              {{ price.transferDate | date:'mediumDate':'locale':'en-GB' }}
+            </td>
+            <td  class="text-right">
+              {{ price.price | currency:'GBP':'symbol':'1.0-0' }}
+            </td>
+            <td>
+              {{ price.postcode }}
+            </td>
+            <td>
+              {{ price.locality }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ng-template #noMatches>
+        <div class="alert alert-info" role="alert">
+          No matching sales
+        </div>
+      </ng-template>
+
     </div>
     <div class="card-footer">
       <button class="btn btn-secondary" (click)="onBack()">
-          <i class="fa fa-angle-left" ></i>
+        <fa-icon icon="angle-left"></fa-icon>
           Back
         </button>
     </div>
