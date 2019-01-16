@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { IPrice } from './price';
 import { catchError, tap, map } from 'rxjs/operators';
+import {environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class HousePriceService {
   constructor(private http: HttpClient) { }
 
   getPrices(): Observable<IPrice[]> {
-    return this.http.get<IPrice[]>(this.transactionsUrl).pipe(
+    return this.http.get<IPrice[]>(environment.api+"transactions/cb233ny/1000").pipe(
       tap(data => console.log('All: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );

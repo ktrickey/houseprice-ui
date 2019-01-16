@@ -3,6 +3,7 @@ import { IPrice } from './price';
 import { AppRoutingModule } from '../app-routing.module';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HousePriceService } from './house-price.service';
+import { HousePriceNoMatchMessageComponent } from "./house-price-no-match-message.component";
 
 @Component({
   selector: 'app-house-price',
@@ -23,6 +24,9 @@ export class HousePriceComponent implements OnInit {
   postcode: string;
   radius: number;
 
+  get hasPrices(): boolean {
+    return this.prices && this.prices.length >0;
+  }
   ngOnInit() {
     this.priceService.getPrices().subscribe(
       prices => this.prices = prices,

@@ -1,7 +1,7 @@
 [
   {
     "postcode": "CB23 3NY",
-    "transferDate": "20118-04-21" ,
+    "transferDate": "2018-04-21" ,
     "price": 123456,
     "paon": 12,
     "street": "North Lodge Drive",
@@ -9,7 +9,7 @@
   },
   {
     "postcode": "CB23 3NY",
-    "transferDate": "20118-04-22" ,
+    "transferDate": "2018-04-22" ,
     "price": 345673,
     "paon": 15,
     "street": "North Lodge Drive",
