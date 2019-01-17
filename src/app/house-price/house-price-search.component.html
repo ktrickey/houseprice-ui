@@ -5,7 +5,10 @@
     <div class="row">
       <div class="input-group">
         <input name="postcode" type="text" [(ngModel)]="postcode" class="form-control" placeholder="Enter postcode"/>
-        <button name="searchButton" class="btn btn-primary" (click)='onSearch()'>
+        <button name="searchButton"
+          class="btn btn-primary {{!postcode ? 'disabled' : ''}}"
+          (click)='onSearch()'
+          ng-disabled='!postcode'>
           Search!
         </button>
       </div>

@@ -10,8 +10,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import { HousePriceNoMatchMessageComponent } from "./house-price/house-price-no-match-message.component";
-import { HousePriceResultsTableComponent } from './house-price/house-price-results-table.component';
 
 import localeEnGb from '@angular/common/locales/en-GB'
 import { registerLocaleData } from '@angular/common';
@@ -20,9 +18,7 @@ import { registerLocaleData } from '@angular/common';
   declarations: [
     AppComponent,
     HousePriceComponent,
-    HousePriceSearchComponent,
-    HousePriceNoMatchMessageComponent,
-    HousePriceResultsTableComponent
+    HousePriceSearchComponent
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,10 @@ export class HousePriceSearchComponent implements OnInit {
   }
 
   onSearch(): void {
-    this.router.navigate(['/prices', this.postcode, 'radius', this.radius]);
+    if (this.postcode)
+    {
+      this.router.navigate(['/prices', this.postcode, 'radius', this.radius]);
+    }
   }
 }
 

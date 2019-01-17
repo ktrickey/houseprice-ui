@@ -1,10 +1,18 @@
 <div class="card">
-
-    <div class="card-body">
-      <div class="alert alert-info" role="alert">
-        Results within {{radius}}km of {{postcode}}
+      <div class="alert alert-info" role="alert" *ngIf="callPending">
+        Retreiving sales details
       </div>
-      <table class="table table-striped" *ngIf="hasPrices ; else noMatches">
+      <div class="alert alert-success" role="alert" *ngIf="hasPrices ; else noMatches">
+        Sales within {{radius}}km of {{postcode}}
+      </div>
+      <ng-template #noMatches>
+        <div class="alert alert-primary" role="alert" *ngIf="!callPending">
+          No sales within {{radius}}km of {{postcode}}
+        </div>
+      </ng-template>
+    <div class="card-body">
+
+      <table class="table table-striped" *ngIf="hasPrices">
         <thead>
           <tr>
             <th style="width: 8%">Number/Name</th>
@@ -38,12 +46,6 @@
           </tr>
         </tbody>
       </table>
-      <ng-template #noMatches>
-        <div class="alert alert-info" role="alert">
-          No matching sales
-        </div>
-      </ng-template>
-
     </div>
     <div class="card-footer">
       <button class="btn btn-secondary" (click)="onBack()">
