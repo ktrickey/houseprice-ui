@@ -3,7 +3,6 @@ import { IPrice } from './price';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { HousePriceService } from './house-price.service';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-house-price',

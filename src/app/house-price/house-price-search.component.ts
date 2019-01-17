@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
-import { AppRoutingModule } from '../app-routing.module';
 
 @Component({
   selector: 'app-house-price-search',
@@ -15,7 +13,6 @@ export class HousePriceSearchComponent implements OnInit {
   radius = 10;
 
   ngOnInit() {
-
   }
 
   onSearch(): void {
