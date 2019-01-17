@@ -14,7 +14,7 @@ export class HousePriceService {
   constructor(private http: HttpClient) { }
 
   getPrices(postcode: string, radius: number, skip?: number): Observable<IPriceLookup> {
-    return this.http.get<IPriceLookup>(this.transactionsUrl + `${encodeURI(postcode)}/${radius}/${skip ? skip :''}`).pipe(
+    return this.http.get<IPriceLookup>(this.transactionsUrl + `${encodeURI(postcode)}/${radius}/${skip ? skip : ''}`).pipe(
       tap(data => console.log('All: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );

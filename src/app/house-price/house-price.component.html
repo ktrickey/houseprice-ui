@@ -15,6 +15,9 @@
           <fa-icon icon="angle-left"></fa-icon>
           Back
         </button>
+        <button class="btn btn-secondary" (click)="onPrevPage()" *ngIf="!isFirstPage">
+          Previous Page
+        </button>
         <button class="btn btn-secondary" (click)="onNextPage()" *ngIf="moreAvailable">
           Next Page
         </button>
@@ -28,7 +31,10 @@
             <th style="width: 10%">Transfer Date</th>
             <th class="text-right" style="width: 8%">Price</th>
             <th style="width: 10%">Postcode</th>
-            <th >Locality</th>
+            <th>Locality</th>
+            <th>City</th>
+            <th>District</th>
+            <th>County</th>
           </tr>
         </thead>
         <tbody>
@@ -49,7 +55,16 @@
               {{ price.postcode }}
             </td>
             <td>
-              {{ price.locality }}
+              {{ price.locality | titlecase }}
+            </td>
+            <td>
+              {{ price.city | titlecase }}
+            </td>
+            <td>
+              {{ price.district | titlecase }}
+            </td>
+            <td>
+              {{ price.county | titlecase }}
             </td>
           </tr>
         </tbody>
@@ -59,6 +74,9 @@
       <button class="btn btn-secondary" (click)="onBack()">
         <fa-icon icon="angle-left"></fa-icon>
           Back
+        </button>
+        <button class="btn btn-secondary" (click)="onPrevPage()" *ngIf="!isFirstPage">
+          Previous Page
         </button>
         <button class="btn btn-secondary" (click)="onNextPage()" *ngIf="moreAvailable">
           Next Page
