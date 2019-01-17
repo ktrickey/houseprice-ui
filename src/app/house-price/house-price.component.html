@@ -1,15 +1,24 @@
+<div class="alert alert-info" role="alert" *ngIf="callPending">
+  Retreiving sales details
+</div>
+<div class="alert alert-success" role="alert" *ngIf="hasPrices ; else noMatches">
+  Sales within {{radius}}km of {{postcode}}
+</div>
+<ng-template #noMatches>
+  <div class="alert alert-primary" role="alert" *ngIf="!callPending">
+    No sales within {{radius}}km of {{postcode}}
+  </div>
+</ng-template>
 <div class="card">
-      <div class="alert alert-info" role="alert" *ngIf="callPending">
-        Retreiving sales details
-      </div>
-      <div class="alert alert-success" role="alert" *ngIf="hasPrices ; else noMatches">
-        Sales within {{radius}}km of {{postcode}}
-      </div>
-      <ng-template #noMatches>
-        <div class="alert alert-primary" role="alert" *ngIf="!callPending">
-          No sales within {{radius}}km of {{postcode}}
-        </div>
-      </ng-template>
+  <div class="card-header">
+        <button class="btn btn-secondary" (click)="onBack()">
+          <fa-icon icon="angle-left"></fa-icon>
+          Back
+        </button>
+        <button class="btn btn-secondary" (click)="onNextPage()" *ngIf="moreAvailable">
+          Next Page
+        </button>
+  </div>
     <div class="card-body">
       <table class="table table-striped" *ngIf="hasPrices">
         <thead>
@@ -50,6 +59,9 @@
       <button class="btn btn-secondary" (click)="onBack()">
         <fa-icon icon="angle-left"></fa-icon>
           Back
+        </button>
+        <button class="btn btn-secondary" (click)="onNextPage()" *ngIf="moreAvailable">
+          Next Page
         </button>
     </div>
   </div>

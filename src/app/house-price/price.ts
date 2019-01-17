@@ -29,6 +29,6 @@ export interface IPrice {
 }
 
 export interface IPriceLookup {
-  totalRows: number;
+  moreAvailable: boolean;
   results: IPrice[];
 }
