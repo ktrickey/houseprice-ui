@@ -1,11 +1,14 @@
-<div class="alert alert-info" role="alert" *ngIf="callPending">
+<div class="alert alert-info" role="alert" *ngIf="callPending && errorMessage!=''">
   Retreiving sales details
+</div>
+<div class="alert alert-danger" role="alert" *ngIf="!callPending && errorMessage!=''">
+  Error getting sales data
 </div>
 <div class="alert alert-success" role="alert" *ngIf="hasPrices ; else noMatches">
   Sales within {{radius}}km of {{postcode}}
 </div>
 <ng-template #noMatches>
-  <div class="alert alert-primary" role="alert" *ngIf="!callPending">
+  <div class="alert alert-primary" role="alert" *ngIf="!callPending && errorMessage===''">
     No sales within {{radius}}km of {{postcode}}
   </div>
 </ng-template>
@@ -70,7 +73,7 @@
         </tbody>
       </table>
     </div>
-    <div class="card-footer">
+    <div class="card-footer" *ngIf="hasPrices">
       <button class="btn btn-secondary" (click)="onBack()">
         <fa-icon icon="angle-left"></fa-icon>
           Back

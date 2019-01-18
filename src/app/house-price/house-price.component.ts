@@ -52,7 +52,8 @@ export class HousePriceComponent implements OnInit {
         this.prices = lookup.results;
         this._callPending = false;
       },
-      error => this.errorMessage = <any>error
+      error => {this.errorMessage = <any>error;
+      this._callPending = false;}
     );
   }
 
