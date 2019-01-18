@@ -40,19 +40,20 @@ export class HousePriceComponent implements OnInit {
   ngOnInit() {
     this.postcode = this._route.snapshot.params.postcode;
     this.radius = this._route.snapshot.params.radius;
-    this._callPending = true;
+
     this.getPrices();
   }
 
   getPrices() {
-    this.priceService.getPrices(this.postcode, this.radius).subscribe(
+    this._callPending = true;
+    this.priceService.getPrices(this.postcode, this.radius, this._startRecord).subscribe(
       lookup => {
         // var currentTime = new Date().getTime();
 
         // while (currentTime + 2000 >= new Date().getTime()) {
         // }
         this.moreAvailable = lookup.moreAvailable;
-        this._startRecord += lookup.results.length;
+        this.errorMessage = '';
         this.prices = lookup.results;
         this.isFirstPage = this._startRecord === 0;
         this._callPending = false;
@@ -69,13 +70,18 @@ export class HousePriceComponent implements OnInit {
   }
 
   onNextPage(): void {
-    this._startRecord += 50;
-    this.getPrices();
+    if (this.moreAvailable) {
+      this._startRecord += 50;
+      this.getPrices();
+    }
   }
 
   onPrevPage(): void {
-    this._startRecord -= 50;
-    this.getPrices();
+    if (!this.isFirstPage) {
+      this._startRecord -= 50;
+      this.getPrices();
+    }
+
   }
 
 }

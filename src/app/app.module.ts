@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
 
 import localeEnGb from '@angular/common/locales/en-GB'
 import { registerLocaleData } from '@angular/common';
@@ -31,7 +32,7 @@ import { registerLocaleData } from '@angular/common';
 })
 export class AppModule {
   constructor(){
-    library.add(faAngleLeft);
+    library.add(faAngleLeft, faCog);
     registerLocaleData(localeEnGb);
   }
 

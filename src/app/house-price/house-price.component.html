@@ -1,10 +1,11 @@
 <div class="alert alert-info" role="alert" *ngIf="callPending">
+    <fa-icon icon="cog" spin=true></fa-icon>
   Retreiving sales details
 </div>
 <div class="alert alert-danger" role="alert" *ngIf="!callPending && errorMessage!=''">
   Error getting sales data {{ errorMessage }}
 </div>
-<div class="alert alert-success" role="alert" *ngIf="hasPrices ; else noMatches">
+<div class="alert alert-success" role="alert" *ngIf="!callPending && hasPrices ; else noMatches">
   Sales within {{radius}}km of {{postcode}}
 </div>
 <ng-template #noMatches>
@@ -12,30 +13,33 @@
     No sales within {{radius}}km of {{postcode}}
   </div>
 </ng-template>
+<ng-template #buttons>
+    <button class="btn btn-secondary" (click)="onBack()">
+      <fa-icon icon="angle-left"></fa-icon>
+      Back to search
+    </button>
+    <button class="btn btn-secondary {{isFirstPage ? 'disabled' : '' }}" (click)="onPrevPage()" >
+      Previous Page
+    </button>
+    <button class="btn btn-secondary {{!moreAvailable ? 'disabled' : '' }}" (click)="onNextPage()" >
+      Next Page
+    </button>
+</ng-template>
 <div class="card">
   <div class="card-header">
-        <button class="btn btn-secondary" (click)="onBack()">
-          <fa-icon icon="angle-left"></fa-icon>
-          Back
-        </button>
-        <button class="btn btn-secondary" (click)="onPrevPage()" *ngIf="!isFirstPage">
-          Previous Page
-        </button>
-        <button class="btn btn-secondary" (click)="onNextPage()" *ngIf="moreAvailable">
-          Next Page
-        </button>
+    <ng-container *ngTemplateOutlet="buttons"></ng-container>
   </div>
     <div class="card-body">
       <table class="table table-striped" *ngIf="hasPrices">
         <thead>
           <tr>
-            <th style="width: 8%">Number/Name</th>
-            <th style="width: 25%">Street</th>
+            <th style="width: 10%">Number/Name</th>
+            <th style="width: 15%">Street</th>
             <th style="width: 10%">Transfer Date</th>
             <th class="text-right" style="width: 8%">Price</th>
             <th style="width: 10%">Postcode</th>
-            <th>Locality</th>
-            <th>City</th>
+            <th style="width: 12%">Locality</th>
+            <th style="width: 10%">City</th>
             <th>District</th>
             <th>County</th>
           </tr>
@@ -43,10 +47,10 @@
         <tbody>
           <tr *ngFor="let price of prices">
             <td class="text-right">
-              {{ price.paon }}
+              {{ price.paon | titlecase }}
             </td>
             <td>
-              {{ price.street }}
+              {{ price.street | titlecase }}
             </td>
             <td>
               {{ price.transferDate | date:'mediumDate':'locale':'en-GB' }}
@@ -74,15 +78,6 @@
       </table>
     </div>
     <div class="card-footer" *ngIf="hasPrices">
-      <button class="btn btn-secondary" (click)="onBack()">
-        <fa-icon icon="angle-left"></fa-icon>
-          Back
-        </button>
-        <button class="btn btn-secondary" (click)="onPrevPage()" *ngIf="!isFirstPage">
-          Previous Page
-        </button>
-        <button class="btn btn-secondary" (click)="onNextPage()" *ngIf="moreAvailable">
-          Next Page
-        </button>
+      <ng-container *ngTemplateOutlet="buttons"></ng-container>
     </div>
   </div>
