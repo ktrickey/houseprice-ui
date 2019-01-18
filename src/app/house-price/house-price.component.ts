@@ -41,6 +41,10 @@ export class HousePriceComponent implements OnInit {
     this.postcode = this._route.snapshot.params.postcode;
     this.radius = this._route.snapshot.params.radius;
     this._callPending = true;
+    this.getPrices();
+  }
+
+  getPrices() {
     this.priceService.getPrices(this.postcode, this.radius).subscribe(
       lookup => {
         // var currentTime = new Date().getTime();
@@ -50,10 +54,13 @@ export class HousePriceComponent implements OnInit {
         this.moreAvailable = lookup.moreAvailable;
         this._startRecord += lookup.results.length;
         this.prices = lookup.results;
+        this.isFirstPage = this._startRecord === 0;
         this._callPending = false;
       },
-      error => {this.errorMessage = <any>error;
-      this._callPending = false;}
+      error => {
+        this.errorMessage = <any>error;
+        this._callPending = false;
+      }
     );
   }
 
@@ -63,33 +70,12 @@ export class HousePriceComponent implements OnInit {
 
   onNextPage(): void {
     this._startRecord += 50;
-    this.priceService.getPrices(this.postcode, this.radius, this._startRecord).subscribe(
-      lookup => {
-        // var currentTime = new Date().getTime();
-
-        // while (currentTime + 2000 >= new Date().getTime()) {
-        // }
-        this.moreAvailable = lookup.moreAvailable;
-        this.isFirstPage = this._startRecord === 0;
-        this.prices = lookup.results;
-        this._callPending = false;
-      },
-      error => this.errorMessage = <any>error
-    );
+    this.getPrices();
   }
 
   onPrevPage(): void {
     this._startRecord -= 50;
-    this.priceService.getPrices(this.postcode, this.radius, this._startRecord).subscribe(
-      lookup => {
-
-        this.moreAvailable = lookup.moreAvailable;
-        this.isFirstPage = this._startRecord === 0;
-        this.prices = lookup.results;
-        this._callPending = false;
-      },
-      error => this.errorMessage = <any>error
-    );
+    this.getPrices();
   }
 
 }

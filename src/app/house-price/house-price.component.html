@@ -1,8 +1,8 @@
-<div class="alert alert-info" role="alert" *ngIf="callPending && errorMessage!=''">
+<div class="alert alert-info" role="alert" *ngIf="callPending">
   Retreiving sales details
 </div>
 <div class="alert alert-danger" role="alert" *ngIf="!callPending && errorMessage!=''">
-  Error getting sales data
+  Error getting sales data {{ errorMessage }}
 </div>
 <div class="alert alert-success" role="alert" *ngIf="hasPrices ; else noMatches">
   Sales within {{radius}}km of {{postcode}}
