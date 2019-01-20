@@ -14,21 +14,21 @@
   </div>
 </ng-template>
 <ng-template #buttons>
-    <button class="btn btn-secondary" (click)="onBack()">
+<div class="btn-toolbar" role="toolbar">
+    <button class="btn btn-secondary btn-sm" (click)="onBack()">
       <fa-icon icon="angle-left"></fa-icon>
-      Back to search
+      Search
     </button>
-    <button class="btn btn-secondary {{isFirstPage ? 'disabled' : '' }}" (click)="onPrevPage()" >
-      Previous Page
+    <button class="btn btn-secondary btn-sm {{isFirstPage ? 'disabled' : '' }}" (click)="onPrevPage()" >
+      Previous
     </button>
-    <button class="btn btn-secondary {{!moreAvailable ? 'disabled' : '' }}" (click)="onNextPage()" >
-      Next Page
+    <button class="btn btn-secondary btn-sm {{!moreAvailable ? 'disabled' : '' }}" (click)="onNextPage()" >
+      Next
     </button>
-</ng-template>
-<div class="card">
-  <div class="card-header">
-    <ng-container *ngTemplateOutlet="buttons"></ng-container>
   </div>
+</ng-template>
+<ng-container *ngTemplateOutlet="buttons"></ng-container>
+<div class="card">
     <div class="card-body">
       <table class="table table-striped" *ngIf="hasPrices">
         <thead>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { IPrice } from './price';
-
 import { ActivatedRoute, Router } from '@angular/router';
 import { HousePriceService } from './house-price.service';
 
@@ -14,33 +13,30 @@ export class HousePriceComponent implements OnInit {
   constructor(route: ActivatedRoute,
     private router: Router,
     private priceService: HousePriceService) {
-
       this._route = route;
   }
+
   private _route: ActivatedRoute;
   prices: IPrice[] = [];
   errorMessage: '';
   postcode: string;
   radius: number;
   private _callPending: boolean;
-
-  private _startRecord: number = 0;
-
-  isFirstPage: boolean = true;
-
-  moreAvailable: boolean = false;
-
+  private _startRecord = 0;
+  isFirstPage = true;
+  moreAvailable = false;
 
   get callPending () {
     return this._callPending;
   }
+
   get hasPrices(): boolean {
     return this.prices && this.prices.length > 0;
   }
+
   ngOnInit() {
     this.postcode = this._route.snapshot.params.postcode;
     this.radius = this._route.snapshot.params.radius;
-
     this.getPrices();
   }
 
@@ -48,10 +44,6 @@ export class HousePriceComponent implements OnInit {
     this._callPending = true;
     this.priceService.getPrices(this.postcode, this.radius, this._startRecord).subscribe(
       lookup => {
-        // var currentTime = new Date().getTime();
-
-        // while (currentTime + 2000 >= new Date().getTime()) {
-        // }
         this.moreAvailable = lookup.moreAvailable;
         this.errorMessage = '';
         this.prices = lookup.results;
@@ -81,7 +73,5 @@ export class HousePriceComponent implements OnInit {
       this._startRecord -= 50;
       this.getPrices();
     }
-
   }
-
 }
