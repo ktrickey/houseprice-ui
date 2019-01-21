@@ -1,34 +1,37 @@
-<div class="alert alert-info" role="alert" *ngIf="callPending">
-    <fa-icon icon="cog" spin=true></fa-icon>
-  Retreiving sales details
-</div>
-<div class="alert alert-danger" role="alert" *ngIf="!callPending && errorMessage!=''">
-  Error getting sales data {{ errorMessage }}
-</div>
-<div class="alert alert-success" role="alert" *ngIf="!callPending && hasPrices ; else noMatches">
-  Sales within {{radius}}km of {{postcode}}
-</div>
-<ng-template #noMatches>
-  <div class="alert alert-primary" role="alert" *ngIf="!callPending && errorMessage===''">
-    No sales within {{radius}}km of {{postcode}}
+<div class="pageContentWrapper">
+  <div class="alert alert-info" role="alert" *ngIf="callPending">
+      <fa-icon icon="cog" spin=true></fa-icon>
+    Retreiving sales details
   </div>
-</ng-template>
-<ng-template #buttons>
-<div class="btn-toolbar" role="toolbar">
-    <button class="btn btn-secondary btn-sm" (click)="onBack()">
-      <fa-icon icon="angle-left"></fa-icon>
-      Search
-    </button>
-    <button class="btn btn-secondary btn-sm {{isFirstPage ? 'disabled' : '' }}" (click)="onPrevPage()" >
-      Previous
-    </button>
-    <button class="btn btn-secondary btn-sm {{!moreAvailable ? 'disabled' : '' }}" (click)="onNextPage()" >
-      Next
-    </button>
+  <div class="alert alert-danger" role="alert" *ngIf="!callPending && errorMessage!=''">
+    Error getting sales data {{ errorMessage }}
   </div>
-</ng-template>
-<ng-container *ngTemplateOutlet="buttons"></ng-container>
-<div class="card">
+  <div class="alert alert-success" role="alert" *ngIf="!callPending && hasPrices ; else noMatches">
+    Sales within {{radius}}km of {{postcode}}
+  </div>
+  <ng-template #noMatches>
+    <div class="alert alert-primary" role="alert" *ngIf="!callPending && errorMessage===''">
+      No sales within {{radius}}km of {{postcode}}
+    </div>
+  </ng-template>
+  <ng-template #buttons>
+  <div>
+      <button class="btn btn-secondary btn-sm" (click)="onBack()">
+        <fa-icon icon="angle-left"></fa-icon>
+        Search
+      </button>
+      <span *ngIf="!callPending && hasPrices">
+        <button class="btn btn-secondary btn-sm {{isFirstPage ? 'disabled' : '' }}" (click)="onPrevPage()" >
+          Previous
+        </button>
+        <button class="btn btn-secondary btn-sm {{!moreAvailable ? 'disabled' : '' }}" (click)="onNextPage()" >
+          Next
+        </button>
+      </span>
+    </div>
+  </ng-template>
+  <ng-container *ngTemplateOutlet="buttons"></ng-container>
+  <div class="card">
     <div class="card-body">
       <table class="table table-striped" *ngIf="hasPrices">
         <thead>
@@ -81,3 +84,4 @@
       <ng-container *ngTemplateOutlet="buttons"></ng-container>
     </div>
   </div>
+</div>

@@ -24,7 +24,7 @@
               "src/api"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -80,7 +80,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.css",
+              "src/styles.scss",
               "src/api"
             ],
             "scripts": [],
@@ -133,5 +133,10 @@
       }
     }
   },
-  "defaultProject": "housepriceui"
+  "defaultProject": "housepriceui",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

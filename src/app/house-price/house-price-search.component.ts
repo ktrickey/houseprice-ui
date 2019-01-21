@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-house-price-search',
   templateUrl: './house-price-search.component.html',
-  styleUrls: ['./house-price-search.component.css']
+  styleUrls: ['./house-price-search.component.scss'],
+  preserveWhitespaces: true
 })
 export class HousePriceSearchComponent implements OnInit {
 
