@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
   selector: 'app-house-price-search',
   templateUrl: './house-price-search.component.html',
   styleUrls: ['./house-price-search.component.scss'],
-  preserveWhitespaces: true
+ // preserveWhitespaces: true
 })
 export class HousePriceSearchComponent implements OnInit {
 

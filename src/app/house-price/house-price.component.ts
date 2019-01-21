@@ -4,9 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HousePriceService } from './house-price.service';
 
 @Component({
-  selector: "app-house-price",
-  templateUrl: "./house-price.component.html",
-  styleUrls: ["./house-price.component.scss"],
+  selector: 'app-house-price',
+  templateUrl: './house-price.component.html',
+  styleUrls: ['./house-price.component.scss'],
   preserveWhitespaces: true
 })
 export class HousePriceComponent implements OnInit {
@@ -19,7 +19,7 @@ export class HousePriceComponent implements OnInit {
 
   private _route: ActivatedRoute;
   prices: IPrice[] = [];
-  errorMessage: "";
+  errorMessage: '';
   postcode: string;
   radius: number;
   private _callPending: boolean;
@@ -48,7 +48,7 @@ export class HousePriceComponent implements OnInit {
       .subscribe(
         lookup => {
           this.moreAvailable = lookup.moreAvailable;
-          this.errorMessage = "";
+          this.errorMessage = '';
           this.prices = lookup.results;
           this.isFirstPage = this._startRecord === 0;
           this._callPending = false;
@@ -61,7 +61,7 @@ export class HousePriceComponent implements OnInit {
   }
 
   onBack(): void {
-    this.router.navigate(["./"]);
+    this.router.navigate(['./']);
   }
 
   onNextPage(): void {

@@ -20,6 +20,6 @@
     ]
   },
   "angularCompilerOptions": {
-    "preserveWhitespaces": false
+    "preserveWhitespaces": true
   }
 }
