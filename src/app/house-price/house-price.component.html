@@ -31,9 +31,9 @@
     </div>
   </ng-template>
   <ng-container *ngTemplateOutlet="buttons"></ng-container>
-  <div class="card">
+  <div class="card" *ngIf="hasPrices">
     <div class="card-body">
-      <table class="table table-striped" *ngIf="hasPrices">
+      <table class="table table-striped">
         <thead>
           <tr>
             <th style="width: 10%">Number/Name</th>
